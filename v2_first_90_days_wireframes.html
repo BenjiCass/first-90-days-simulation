@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The First 90 Days — Screen Wireframes v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f8f8f8;
+    --bg-secondary: #f0efec;
+    --bg-tertiary: #e8e6e1;
+    --bg-card: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a48;
+    --text-tertiary: #8a8880;
+    --navy: #1B2D4F;
+    --navy-light: #2a4070;
+    --teal: #2A7F6F;
+    --teal-light: #3a9f8c;
+    --border-light: rgba(27,45,79,0.08);
+    --border-mid: rgba(27,45,79,0.15);
+    --border-strong: rgba(27,45,79,0.3);
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-header {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1.25rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .page-header-left { display: flex; flex-direction: column; gap: 2px; }
+  .page-header h1 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
+  .page-header p { font-size: 12px; color: var(--text-tertiary); font-weight: 300; letter-spacing: 0.04em; }
+  .page-header .meta {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .version-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--navy);
+    color: #f8f8f8;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: var(--radius-sm);
+    font-weight: 400;
+  }
+
+  .container { max-width: 1120px; margin: 0 auto; padding: 2rem 2rem 3rem; }
+
+  .nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .nav-btn {
+    padding: 7px 16px;
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+  }
+  .nav-btn:hover { background: var(--bg-secondary); border-color: var(--border-strong); color: var(--text-primary); }
+  .nav-btn.active {
+    background: var(--navy);
+    color: #f8f8f8;
+    border-color: var(--navy);
+    font-weight: 500;
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  .screen-eyebrow {
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .screen-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.25rem;
+    line-height: 1.25;
+  }
+  .screen-meta {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .frame {
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-card);
+    box-shadow: 0 2px 12px rgba(27,45,79,0.06), 0 1px 3px rgba(27,45,79,0.04);
+  }
+  .frame-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-light);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #e8b4b4; }
+  .dot-y { background: #e8dab4; }
+  .dot-g { background: #b4e8c8; }
+  .frame-label { font-size: 11px; color: var(--text-tertiary); margin-left: auto; font-weight: 300; letter-spacing: 0.04em; }
+  .frame-body { padding: 2rem; min-height: 400px; position: relative; }
+
+  .zone {
+    border: 1.5px dashed var(--border-mid);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    background: rgba(248,248,248,0.5);
+  }
+  .zone-label {
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    background: var(--bg-card);
+    padding: 0 6px;
+    font-size: 10px;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .zone-content {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    padding-top: 0.25rem;
+    font-weight: 300;
+  }
+  .zone-content strong { color: var(--text-primary); font-weight: 500; }
+
+  .zone-row { display: grid; gap: 1rem; margin-bottom: 1rem; }
+  .cols-2 { grid-template-columns: 1fr 1.85fr; }
+  .cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .cols-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .annotation {
+    background: var(--bg-card);
+    border-left: 3px solid var(--navy);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    margin-top: 1.5rem;
+    box-shadow: 0 1px 4px rgba(27,45,79,0.05);
+  }
+  .annotation-title {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .annotation-list { list-style: none; }
+  .annotation-list li {
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding: 3px 0 3px 16px;
+    position: relative;
+    line-height: 1.55;
+    font-weight: 300;
+  }
+  .annotation-list li::before { content: "—"; position: absolute; left: 0; color: var(--teal); }
+
+  .btn-mock {
+    display: inline-block;
+    padding: 9px 22px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-md);
+    font-size: 12px;
+    color: var(--text-primary);
+    background: transparent;
+    font-family: var(--font-body);
+    cursor: default;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+  }
+  .btn-mock.primary {
+    background: var(--navy);
+    color: #f8f8f8;
+    border-color: var(--navy);
+  }
+  .btn-mock.locked { opacity: 0.3; }
+
+  .memo-card {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-card);
+  }
+  .memo-header {
+    background: var(--navy);
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .memo-header-text { font-size: 10px; color: rgba(248,248,248,0.7); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 400; }
+  .memo-body { padding: 1rem; }
+  .memo-body .memo-field { font-size: 12px; color: var(--text-secondary); line-height: 1.7; font-weight: 300; }
+  .memo-body .memo-field strong { color: var(--text-primary); font-weight: 500; }
+
+  .artefact-card {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--bg-card);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .artefact-card:hover { box-shadow: 0 4px 16px rgba(27,45,79,0.1); border-color: var(--border-strong); }
+  .artefact-card-header { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border-light); }
+  .artefact-type { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+  .type-survey { color: var(--teal); }
+  .type-quote { color: var(--navy); }
+  .type-board { color: #7A6F3F; }
+  .type-compliance { color: #8B3A3A; }
+  .artefact-card-body { padding: 0.75rem; }
+  .artefact-body-text { font-size: 12px; color: var(--text-secondary); line-height: 1.5; font-weight: 300; }
+  .artefact-expand { padding: 0.5rem 0.75rem; border-top: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; }
+  .expand-label { font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.06em; font-weight: 400; }
+  .expand-icon { width: 14px; height: 14px; border: 1px solid var(--border-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+  .choice-card {
+    border: 1px solid var(--border-mid);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    background: var(--bg-card);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .choice-card:hover { border-color: var(--navy); box-shadow: 0 2px 12px rgba(27,45,79,0.08); }
+  .choice-number { font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; font-weight: 400; }
+  .choice-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .choice-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; font-weight: 300; }
+  .choice-selector { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--border-mid); margin-top: 0.75rem; }
+
+  .progress-bar { height: 2px; background: var(--border-light); border-radius: 2px; margin-bottom: 1.75rem; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--navy); border-radius: 2px; }
+
+  .divider { height: 1px; background: var(--border-light); margin: 0.75rem 0; }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    border: 1px solid var(--border-light);
+    color: var(--text-tertiary);
+    letter-spacing: 0.04em;
+    font-weight: 300;
+  }
+
+  .meter-track { height: 4px; background: var(--border-light); border-radius: 2px; overflow: hidden; flex: 1; }
+  .meter-fill { height: 100%; background: var(--navy); border-radius: 2px; }
+
+  .consequence-card {
+    border-left: 3px solid var(--teal);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 0.85rem 1rem;
+    background: var(--bg-card);
+    margin-bottom: 0.75rem;
+    border-top: 1px solid var(--border-light);
+    border-right: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+  }
+  .consequence-card.inactive { opacity: 0.3; border-left-color: var(--border-mid); }
+  .consequence-label { font-size: 10px; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; font-weight: 500; }
+  .consequence-label.inactive { color: var(--text-tertiary); }
+  .consequence-text { font-size: 12px; color: var(--text-secondary); line-height: 1.55; font-weight: 300; }
+
+  .role-stat { margin-bottom: 0.85rem; }
+  .role-stat-label { font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; font-weight: 400; }
+  .role-stat-value { font-size: 13px; color: var(--text-primary); font-weight: 400; }
+
+  .counter-strip { font-size: 11px; color: var(--text-tertiary); font-weight: 300; }
+
+  .page-footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    border-top: 1px solid var(--border-light);
+    margin-top: 2rem;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 720px) {
+    .cols-4 { grid-template-columns: 1fr 1fr; }
+    .cols-3 { grid-template-columns: 1fr; }
+    .cols-2 { grid-template-columns: 1fr; }
+    .container { padding: 1rem; }
+    .page-header { padding: 1rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <h1>The First 90 Days — Screen Wireframes</h1>
+    <p>Screens 1–5 · ActivePresenter build reference · UX applied</p>
+  </div>
+  <span class="version-badge">v2.0</span>
+  <span class="meta">March 2026</span>
+</div>
+
+<div class="container">
+
+  <div class="nav">
+    <button class="nav-btn active" onclick="showScreen(0)">TTL-01 — Title</button>
+    <button class="nav-btn" onclick="showScreen(1)">CNT-01 — CEO Memo</button>
+    <button class="nav-btn" onclick="showScreen(2)">CNT-02 — Signals</button>
+    <button class="nav-btn" onclick="showScreen(3)">BRN-01 — Decision</button>
+    <button class="nav-btn" onclick="showScreen(4)">CNT-03 — Consequence</button>
+  </div>
+
+  <!-- SCREEN 1: TTL-01 -->
+  <div class="screen active" id="screen-0">
+    <div class="screen-eyebrow">Screen 1 of 5 · TTL-01 · Title slide · Est. 1 min</div>
+    <div class="screen-title">The First 90 Days: An AI Leadership Simulation</div>
+    <div class="screen-meta">Single zone layout. Full-screen immersive entry. No navigation chrome. No progress bar.</div>
+    <div class="frame">
+      <div class="frame-header">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="frame-label">1280 × 720px · TTL-01</span>
+      </div>
+      <div class="frame-body" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height:460px; background: #f8f8f8;">
+        <div style="width: 100%; max-width: 480px; padding: 2.5rem 2rem;">
+          <div style="width: 32px; height: 2px; background: var(--teal); margin: 0 auto 1.5rem;"></div>
+          <div style="font-size: 11px; color: var(--text-tertiary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 400;">Meridian Financial Services</div>
+          <div style="font-family: var(--font-display); font-size: 32px; font-weight: 500; color: var(--navy); margin-bottom: 8px; line-height: 1.2;">The First 90 Days</div>
+          <div style="font-size: 13px; color: var(--text-tertiary); margin-bottom: 2rem; font-weight: 300; letter-spacing: 0.02em;">A decision simulation for senior leaders</div>
+          <div class="btn-mock primary">Begin</div>
+          <div style="margin-top: 2.5rem; font-size: 11px; color: var(--text-tertiary); font-weight: 300; letter-spacing: 0.04em;">30 minutes · Three decisions · Real consequences</div>
+        </div>
+        <div style="position: absolute; bottom: 1rem; right: 1.5rem;">
+          <span class="tag">No progress bar · No objectives list</span>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">AP build notes · TTL-01</div>
+      <ul class="annotation-list">
+        <li>Single slide. No layers. No timeline animation required.</li>
+        <li>Begin button: navigates to CNT-01 only. No variable logic on this screen.</li>
+        <li>Background: #f8f8f8 off-white. Teal rule above title: 32px wide, 2px tall, centred.</li>
+        <li>Typography: Cormorant Garamond 500 for title. DM Sans 300 for subtitle and descriptor.</li>
+        <li>No progress bar, no objectives list, no instructional framing. Feels like a case study opening.</li>
+        <li>The three-descriptor line below the button sets expectations without breaking tone.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: CNT-01 -->
+  <div class="screen" id="screen-1">
+    <div class="screen-eyebrow">Screen 2 of 5 · CNT-01 · Content slide · Est. 2 min</div>
+    <div class="screen-title">Your Briefing: A Message from the CEO</div>
+    <div class="screen-meta">Document render layout. Memo displayed as realistic artefact. Read-only screen.</div>
+    <div class="frame">
+      <div class="frame-header">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="frame-label">1280 × 720px · CNT-01</span>
+      </div>
+      <div class="frame-body">
+        <div class="progress-bar"><div class="progress-fill" style="width:10%;"></div></div>
+        <div class="zone-row cols-2" style="align-items:start;">
+          <div>
+            <div class="zone" style="min-height:300px;">
+              <div class="zone-label">Context panel — left 35%</div>
+              <div class="zone-content">
+                <div class="role-stat">
+                  <div class="role-stat-label">Your role</div>
+                  <div class="role-stat-value">Chief Innovation and Transformation Officer</div>
+                </div>
+                <div class="role-stat">
+                  <div class="role-stat-label">Organisation</div>
+                  <div class="role-stat-value">Meridian Financial Services</div>
+                </div>
+                <div class="role-stat">
+                  <div class="role-stat-label">Day</div>
+                  <div class="role-stat-value">Day 1 of your tenure</div>
+                </div>
+                <div class="divider"></div>
+                <div style="font-size: 11px; color: var(--text-tertiary); font-weight: 300; line-height: 1.6;">Read the message from your CEO before continuing.</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="zone" style="min-height:300px; padding: 0.75rem;">
+              <div class="zone-label">Memo document — right 65%</div>
+              <div class="memo-card">
+                <div class="memo-header">
+                  <span class="memo-header-text">Internal Memo · Meridian Financial Services</span>
+                  <span class="memo-header-text">Confidential</span>
+                </div>
+                <div class="memo-body">
+                  <div class="memo-field">
+                    <strong>To:</strong> Chief Innovation and Transformation Officer<br>
+                    <strong>From:</strong> Sandra Ortega, Chief Executive Officer<br>
+                    <strong>Re:</strong> AI Transformation Mandate<br>
+                    <strong>Date:</strong> Day 1<br>
+                  </div>
+                  <div class="divider"></div>
+                  <div class="memo-field">
+                    Welcome to Meridian. You have been brought in because we are behind. Our competitors are moving faster, our board is asking harder questions, and our internal teams are pulling in different directions...<br><br>
+                    <em style="font-size: 11px; color: var(--text-tertiary);">[Full memo copy — see storyboard CNT-01]</em>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:flex-end; margin-top:0.25rem;">
+          <div class="btn-mock">Next</div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">AP build notes · CNT-01</div>
+      <ul class="annotation-list">
+        <li>Two-column layout: 35% context panel left, 65% memo document right.</li>
+        <li>Memo: navy header bar with white text. Off-white body. Thin divider between metadata and body copy.</li>
+        <li>Progress bar: navy fill, 2px height, 10% progress. Appears from this screen onward.</li>
+        <li>Next button: available immediately, no lock condition.</li>
+        <li>Role stat labels: DM Sans 300, 10px, all-caps, teal. Values: DM Sans 400, 13px.</li>
+        <li>Maintain Meridian branding and fictional world consistently from this screen onward.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: CNT-02 -->
+  <div class="screen" id="screen-2">
+    <div class="screen-eyebrow">Screen 3 of 5 · CNT-02 · Content slide · Est. 3 min</div>
+    <div class="screen-title">Reading the Room: Four Signals from Inside Meridian</div>
+    <div class="screen-meta">Four-card artefact layout. Each card has a distinct document type treatment. All must be opened before Next activates.</div>
+    <div class="frame">
+      <div class="frame-header">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="frame-label">1280 × 720px · CNT-02</span>
+      </div>
+      <div class="frame-body">
+        <div class="progress-bar"><div class="progress-fill" style="width:25%;"></div></div>
+        <div class="zone" style="margin-bottom:0.75rem; padding: 0.6rem 1rem;">
+          <div class="zone-label">Instruction strip — top</div>
+          <div class="zone-content">Review all four signals from inside Meridian before continuing. Select each card to read in full.</div>
+        </div>
+        <div class="zone-row cols-4">
+          <div class="zone" style="padding: 0.6rem;">
+            <div class="zone-label">Artefact 1</div>
+            <div class="artefact-card">
+              <div class="artefact-card-header">
+                <div class="artefact-type type-survey">Employee Survey</div>
+              </div>
+              <div class="artefact-card-body">
+                <div class="artefact-body-text">Shadow AI usage and staff awareness — data extract</div>
+              </div>
+              <div class="artefact-expand">
+                <span class="expand-label">Select to expand</span>
+                <div class="expand-icon" style="font-size:10px; color: var(--text-tertiary);">+</div>
+              </div>
+            </div>
+          </div>
+          <div class="zone" style="padding: 0.6rem;">
+            <div class="zone-label">Artefact 2</div>
+            <div class="artefact-card">
+              <div class="artefact-card-header">
+                <div class="artefact-type type-quote">CTO Statement</div>
+              </div>
+              <div class="artefact-card-body">
+                <div class="artefact-body-text">Leadership offsite — pilot scaling challenge</div>
+              </div>
+              <div class="artefact-expand">
+                <span class="expand-label">Select to expand</span>
+                <div class="expand-icon" style="font-size:10px; color: var(--text-tertiary);">+</div>
+              </div>
+            </div>
+          </div>
+          <div class="zone" style="padding: 0.6rem;">
+            <div class="zone-label">Artefact 3</div>
+            <div class="artefact-card">
+              <div class="artefact-card-header">
+                <div class="artefact-type type-board">Board Review</div>
+              </div>
+              <div class="artefact-card-body">
+                <div class="artefact-body-text">Technology review summary — integration gaps</div>
+              </div>
+              <div class="artefact-expand">
+                <span class="expand-label">Select to expand</span>
+                <div class="expand-icon" style="font-size:10px; color: var(--text-tertiary);">+</div>
+              </div>
+            </div>
+          </div>
+          <div class="zone" style="padding: 0.6rem;">
+            <div class="zone-label">Artefact 4</div>
+            <div class="artefact-card">
+              <div class="artefact-card-header">
+                <div class="artefact-type type-compliance">Compliance Note</div>
+              </div>
+              <div class="artefact-card-body">
+                <div class="artefact-body-text">Unreviewed GenAI in client-facing outputs</div>
+              </div>
+              <div class="artefact-expand">
+                <span class="expand-label">Select to expand</span>
+                <div class="expand-icon" style="font-size:10px; color: var(--text-tertiary);">+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem;">
+          <div class="counter-strip">0 of 4 signals reviewed</div>
+          <div class="btn-mock locked">Next — locked until all reviewed</div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">AP build notes · CNT-02</div>
+      <ul class="annotation-list">
+        <li>Four artefact cards in a horizontal row. Each card has a distinct colour-coded type label: teal (survey), navy (CTO), warm gold (board), muted red (compliance).</li>
+        <li>Card expand interaction: use object states in AP, not timeline show/hide. Each card has a collapsed and expanded state.</li>
+        <li>Track card views with four boolean variables: signal_1_viewed through signal_4_viewed.</li>
+        <li>Next button locked until all four variables are true. Condition applied to Next button trigger.</li>
+        <li>Counter at bottom left updates as each card is opened. Driven by a numeric variable incrementing on each view.</li>
+        <li>This is the primary portfolio differentiation screen. Prioritise artefact card design quality above all else on this screen.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: BRN-01 -->
+  <div class="screen" id="screen-3">
+    <div class="screen-eyebrow">Screen 4 of 5 · BRN-01 · Branching scenario · Est. 3 min</div>
+    <div class="screen-title">Day 7: Your First Strategic Call</div>
+    <div class="screen-meta">Three-option decision layout. Order: Beginner — Conservative — Fashionista. Single selection. No change after confirm.</div>
+    <div class="frame">
+      <div class="frame-header">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="frame-label">1280 × 720px · BRN-01</span>
+      </div>
+      <div class="frame-body">
+        <div class="progress-bar"><div class="progress-fill" style="width:40%;"></div></div>
+        <div class="zone" style="margin-bottom:1.25rem; padding: 0.75rem 1rem;">
+          <div class="zone-label">Scenario prompt</div>
+          <div class="zone-content">Sandra has asked for your initial read of where Meridian sits. You have reviewed the four signals and spoken informally with three senior leaders. Based on what you have seen, how would you classify Meridian's current position?</div>
+        </div>
+        <div class="zone-row cols-3">
+          <div>
+            <div class="choice-card">
+              <div class="choice-number">Option 01</div>
+              <div class="choice-title">Beginner</div>
+              <div class="choice-desc">Limited capability and coordination across both dimensions. Starting from a low base in technology and leadership readiness.</div>
+              <div class="choice-selector"></div>
+            </div>
+          </div>
+          <div>
+            <div class="choice-card">
+              <div class="choice-number">Option 02</div>
+              <div class="choice-title">Conservative</div>
+              <div class="choice-desc">Strong governance and control structures. Low technical agility. Stability at the cost of progress.</div>
+              <div class="choice-selector"></div>
+            </div>
+          </div>
+          <div>
+            <div class="choice-card">
+              <div class="choice-number">Option 03</div>
+              <div class="choice-title">Fashionista</div>
+              <div class="choice-desc">Strong appetite for experimentation. Weak coordination and scaling capability. Energy without architecture.</div>
+              <div class="choice-selector"></div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.75rem;">
+          <div style="font-size: 11px; color: var(--text-tertiary); font-weight:300;">Select one option to continue</div>
+          <div class="btn-mock locked">Confirm — locked until selection made</div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">AP build notes · BRN-01</div>
+      <ul class="annotation-list">
+        <li>Three choice cards in equal columns. Order left to right: Beginner, Conservative, Fashionista. Reflects ascending sophistication without signalling correct answer.</li>
+        <li>All three cards use identical visual styling. No colour or size hierarchy between options.</li>
+        <li>On selection: highlight selected card with navy border (1.5px). Confirm button unlocks.</li>
+        <li>On confirm: set variable diagnosis_choice = C (Fashionista), B (Conservative), or A (Beginner). Lock all options. Navigate to CNT-03.</li>
+        <li>Transformation Momentum: +1 for Fashionista, -1 for Conservative or Beginner.</li>
+        <li>No back navigation from this point. Decision is final once confirmed.</li>
+        <li>Choice title uses Cormorant Garamond 500. All other choice text uses DM Sans 300.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: CNT-03 -->
+  <div class="screen" id="screen-4">
+    <div class="screen-eyebrow">Screen 5 of 5 · CNT-03 · Content slide · Est. 2 min</div>
+    <div class="screen-title">The Consequence: What Your Diagnosis Sets in Motion</div>
+    <div class="screen-meta">Conditional content layout. Three text versions driven by diagnosis_choice variable. First appearance of Transformation Momentum indicator.</div>
+    <div class="frame">
+      <div class="frame-header">
+        <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+        <span class="frame-label">1280 × 720px · CNT-03</span>
+      </div>
+      <div class="frame-body">
+        <div class="progress-bar"><div class="progress-fill" style="width:55%;"></div></div>
+        <div class="zone-row cols-2" style="align-items:start;">
+          <div>
+            <div class="zone" style="min-height:300px;">
+              <div class="zone-label">Decision recap — left 35%</div>
+              <div class="zone-content">
+                <div class="role-stat">
+                  <div class="role-stat-label">Your classification</div>
+                  <div style="font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--navy); margin-top: 2px;">[Variable: diagnosis_choice]</div>
+                </div>
+                <div class="divider"></div>
+                <div class="role-stat">
+                  <div class="role-stat-label">Transformation Momentum</div>
+                  <div style="display:flex; align-items:center; gap:10px; margin-top:6px;">
+                    <div class="meter-track"><div class="meter-fill" style="width:55%;"></div></div>
+                    <span style="font-size:12px; color:var(--text-secondary); font-weight:300;">[Value]</span>
+                  </div>
+                </div>
+                <div style="font-size:11px; color:var(--text-tertiary); margin-top:1rem; line-height:1.6; font-weight:300;">First appearance of the Momentum indicator. This variable carries forward through all remaining screens.</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="zone" style="min-height:300px;">
+              <div class="zone-label">Consequence text — right 65% — conditional on diagnosis_choice</div>
+              <div class="consequence-card">
+                <div class="consequence-label">Version A — diagnosis = Fashionista (active)</div>
+                <div class="consequence-text">You have identified the pattern accurately. Meridian has energy but no architecture. Your transformation plan will focus on coordination, governance, and scaling existing pilots rather than launching new ones.</div>
+              </div>
+              <div class="consequence-card inactive">
+                <div class="consequence-label inactive">Version B — diagnosis = Conservative (hidden)</div>
+                <div class="consequence-text">You have over-indexed on compliance signals and missed the scale of shadow AI activity across the business...</div>
+              </div>
+              <div class="consequence-card inactive">
+                <div class="consequence-label inactive">Version C — diagnosis = Beginner (hidden)</div>
+                <div class="consequence-text">You have underestimated what Meridian already has. There is experimentation here, even if it is uncoordinated...</div>
+              </div>
+              <div style="font-size:11px; color:var(--text-tertiary); margin-top:8px; font-weight:300;">One version visible to learner at runtime. All three shown here for build reference only.</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem;">
+          <div style="font-size:11px; color:var(--text-tertiary); font-weight:300;">Next available after 5 seconds</div>
+          <div class="btn-mock">Next</div>
+        </div>
+      </div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">AP build notes · CNT-03</div>
+      <ul class="annotation-list">
+        <li>Two-column layout: 35% decision recap left, 65% conditional consequence right.</li>
+        <li>Three consequence cards on right. Active version: teal left border, full opacity. Inactive versions: grey left border, 30% opacity.</li>
+        <li>Conditional show/hide: show if diagnosis_choice = A, B, or C respectively. Only one visible at runtime.</li>
+        <li>Transformation Momentum: navy progress bar. Variable value displayed as numeric alongside bar.</li>
+        <li>Classification display: Cormorant Garamond 500, 18px, navy. Renders variable value directly.</li>
+        <li>Next button: 5-second delay. Use timer trigger or timed enable action in AP.</li>
+        <li>All three paths converge here. No further branching until BRN-02 in the full build.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  The First 90 Days: An AI Leadership Simulation · Wireframe Reference v2.0 · March 2026 · ActivePresenter build · UX: Cormorant Garamond + DM Sans · Palette: Navy #1B2D4F · Teal #2A7F6F · Off-white #F8F8F8
+</div>
+
+<script>
+  function showScreen(index) {
+    document.querySelectorAll('.screen').forEach((s, i) => s.classList.toggle('active', i === index));
+    document.querySelectorAll('.nav-btn').forEach((b, i) => b.classList.toggle('active', i === index));
+  }
+</script>
+
+</body>
+</html>

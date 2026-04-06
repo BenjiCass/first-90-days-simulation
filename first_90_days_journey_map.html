@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The First 90 Days — Learning Journey Map</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1B2D4F;
+  --teal: #2A7F6F;
+  --teal-dark: #085041;
+  --gold: #854F0B;
+  --pink: #993556;
+  --bg: #f8f8f8;
+  --bg-secondary: #f0efec;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a48;
+  --text-tertiary: #8a8880;
+  --border-light: rgba(27,45,79,0.08);
+  --border-mid: rgba(27,45,79,0.15);
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --font: 'DM Sans', -apple-system, sans-serif;
+}
+body { font-family: var(--font); background: #e8e6e1; color: var(--text-primary); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+.page-header { background: #fff; border-bottom: 1px solid var(--border-light); padding: 1.25rem 2.5rem; display: flex; align-items: center; gap: 1.5rem; }
+.page-header h1 { font-size: 18px; font-weight: 500; color: var(--navy); }
+.page-header p { font-size: 12px; color: var(--text-tertiary); font-weight: 300; }
+.version-badge { padding: 3px 10px; background: var(--navy); color: #f8f8f8; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 4px; margin-left: auto; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 3rem; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-light); background: #fff; border-radius: var(--radius-lg); padding: 1rem 1.25rem; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-secondary); }
+.legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.ld-title { background: var(--navy); }
+.ld-content { background: #e8e6f0; border: 1px solid var(--navy); }
+.ld-branch { background: #e1f5ee; border: 1px solid var(--teal); }
+.ld-reflect { background: #faeeda; border: 1px solid var(--gold); }
+.ld-summary { background: #f0efec; border: 1px solid #8a8880; }
+.ld-build { background: #e8b4b4; border: 1px solid #993535; }
+
+.flow { display: flex; flex-direction: column; gap: 0; }
+.section-block { margin-bottom: 1.25rem; }
+.section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.6rem; flex-wrap: wrap; }
+.section-pill { font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.pill-entry { background: #f0efec; color: var(--navy); border: 1px solid var(--navy); }
+.pill-node1 { background: #e1f5ee; color: var(--teal-dark); border: 1px solid var(--teal); }
+.pill-node2 { background: #faeeda; color: #412402; border: 1px solid var(--gold); }
+.pill-node3 { background: #fbeaf0; color: #72243E; border: 1px solid var(--pink); }
+.pill-debrief { background: #f0efec; color: #444441; border: 1px solid #888780; }
+.section-duration { font-size: 11px; color: var(--text-tertiary); }
+.bloom-tag { font-size: 10px; color: var(--text-tertiary); margin-left: auto; font-style: italic; }
+
+.screens-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start; }
+.screen-card { border-radius: var(--radius-md); padding: 8px 10px; min-width: 110px; flex: 1; max-width: 180px; position: relative; }
+.sc-title { background: var(--navy); }
+.sc-content { background: #fff; border: 0.5px solid var(--border-mid); }
+.sc-branch { background: #e1f5ee; border: 0.5px solid var(--teal); }
+.sc-reflect { background: #faeeda; border: 0.5px solid var(--gold); }
+.sc-summary { background: #f0efec; border: 0.5px solid var(--border-light); }
+
+.sc-id { font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+.sc-title .sc-id { color: rgba(248,248,248,0.6); }
+.sc-content .sc-id { color: var(--navy); }
+.sc-branch .sc-id { color: var(--teal-dark); }
+.sc-reflect .sc-id { color: #633806; }
+.sc-summary .sc-id { color: #5F5E5A; }
+
+.sc-name { font-size: 11px; font-weight: 500; line-height: 1.3; margin-bottom: 3px; }
+.sc-title .sc-name { color: #f8f8f8; }
+.sc-content .sc-name { color: var(--text-primary); }
+.sc-branch .sc-name { color: var(--teal-dark); }
+.sc-reflect .sc-name { color: #412402; }
+.sc-summary .sc-name { color: var(--text-secondary); }
+
+.sc-time { font-size: 10px; }
+.sc-title .sc-time { color: rgba(248,248,248,0.5); }
+.sc-content .sc-time { color: var(--text-tertiary); }
+.sc-branch .sc-time { color: #0F6E56; }
+.sc-reflect .sc-time { color: var(--gold); }
+.sc-summary .sc-time { color: var(--text-tertiary); }
+
+.build-badge { position: absolute; top: -7px; right: -7px; background: #993535; color: #fff; font-size: 8px; font-weight: 500; padding: 2px 5px; border-radius: 3px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.build-scope { background: #fff; border: 1.5px dashed #993535; border-radius: var(--radius-lg); padding: 10px 12px; margin-bottom: 0; }
+.build-scope-label { font-size: 10px; color: #993535; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+
+.branch-block { background: var(--bg-secondary); border: 0.5px solid var(--border-light); border-radius: var(--radius-md); padding: 10px 12px; margin: 8px 0; }
+.branch-header { font-size: 10px; color: var(--text-tertiary); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.branch-paths { display: flex; gap: 8px; flex-wrap: wrap; }
+.branch-path { flex: 1; min-width: 100px; border-radius: 5px; padding: 7px 9px; border: 0.5px solid var(--border-light); background: #fff; }
+.path-label { font-size: 10px; font-weight: 500; color: var(--navy); margin-bottom: 2px; }
+.path-desc { font-size: 10px; color: var(--text-tertiary); line-height: 1.4; }
+.path-correct { border-color: var(--teal); }
+.path-correct .path-label { color: var(--teal-dark); }
+
+.converge-line { height: 0.5px; background: var(--border-light); margin: 6px 0; }
+
+.var-strip { background: var(--navy); border-radius: var(--radius-md); padding: 10px 14px; margin: 8px 0; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.var-item { display: flex; align-items: center; gap: 8px; }
+.var-label { font-size: 10px; color: rgba(248,248,248,0.6); letter-spacing: 0.06em; text-transform: uppercase; }
+.var-bar { width: 80px; height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden; }
+.var-fill { height: 100%; background: var(--teal); border-radius: 2px; width: 50%; }
+.var-range { font-size: 10px; color: rgba(248,248,248,0.4); }
+.var-note { margin-left: auto; font-size: 10px; color: rgba(248,248,248,0.4); }
+
+.profile-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; margin-bottom: 8px; }
+.profile-card { flex: 1; min-width: 100px; border-radius: 5px; padding: 7px 9px; border: 0.5px solid var(--border-light); background: #fff; }
+.profile-name { font-size: 11px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+.profile-vars { font-size: 10px; color: var(--text-tertiary); }
+
+.connector { display: flex; justify-content: center; padding: 2px 0; }
+.connector-line { width: 1px; height: 16px; background: var(--border-mid); }
+
+.section-wrap { background: #fff; border-radius: var(--radius-lg); padding: 14px; border: 1px solid var(--border-light); }
+
+.totals { display: flex; gap: 20px; padding-top: 1rem; border-top: 1px solid var(--border-light); margin-top: 1rem; flex-wrap: wrap; background: #fff; border-radius: var(--radius-lg); padding: 1rem 1.25rem; }
+.total-item { display: flex; flex-direction: column; gap: 2px; }
+.total-value { font-size: 18px; font-weight: 500; color: var(--navy); }
+.total-label { font-size: 11px; color: var(--text-tertiary); }
+
+.page-footer { text-align: center; padding: 2rem; font-size: 11px; color: var(--text-tertiary); border-top: 1px solid var(--border-light); margin-top: 2rem; font-weight: 300; letter-spacing: 0.04em; background: #fff; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <h1>The First 90 Days: An AI Leadership Simulation</h1>
+    <p>Complete learning journey map · 19 screens · ActivePresenter portfolio build</p>
+  </div>
+  <span class="version-badge">v1.0 · March 2026</span>
+</div>
+
+<div class="container">
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot ld-title"></div>Title slide</div>
+    <div class="legend-item"><div class="legend-dot ld-content"></div>Content slide</div>
+    <div class="legend-item"><div class="legend-dot ld-branch"></div>Branching scenario</div>
+    <div class="legend-item"><div class="legend-dot ld-reflect"></div>Reflection prompt</div>
+    <div class="legend-item"><div class="legend-dot ld-summary"></div>Summary slide</div>
+    <div class="legend-item"><div class="legend-dot ld-build"></div>Portfolio build scope (screens 1–5)</div>
+  </div>
+
+  <div class="flow">
+
+    <!-- SECTION 1 -->
+    <div class="section-block">
+      <div class="section-header">
+        <span class="section-pill pill-entry">Section 1 — Entry and context setting</span>
+        <span class="section-duration">Est. 5 min</span>
+        <span class="bloom-tag">Bloom's L1–L2</span>
+      </div>
+      <div class="build-scope">
+        <div class="build-scope-label">Portfolio build — screens 1 to 3</div>
+        <div class="screens-row">
+          <div class="screen-card sc-title">
+            <div class="build-badge">Build</div>
+            <div class="sc-id">TTL-01</div>
+            <div class="sc-name">The First 90 Days</div>
+            <div class="sc-time">1 min</div>
+          </div>
+          <div class="screen-card sc-content">
+            <div class="build-badge">Build</div>
+            <div class="sc-id">CNT-01</div>
+            <div class="sc-name">CEO briefing memo</div>
+            <div class="sc-time">2 min</div>
+          </div>
+          <div class="screen-card sc-content">
+            <div class="build-badge">Build</div>
+            <div class="sc-id">CNT-02</div>
+            <div class="sc-name">Four signals from Meridian</div>
+            <div class="sc-time">3 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="connector-line"></div></div>
+
+    <!-- SECTION 2: NODE 1 -->
+    <div class="section-block">
+      <div class="section-header">
+        <span class="section-pill pill-node1">Node 1 — Strategic diagnosis</span>
+        <span class="section-duration">Est. 8 min</span>
+        <span class="bloom-tag">Bloom's L3 Apply</span>
+      </div>
+      <div class="build-scope">
+        <div class="build-scope-label">Portfolio build — screens 4 to 5</div>
+        <div class="screens-row" style="margin-bottom: 8px;">
+          <div class="screen-card sc-branch">
+            <div class="build-badge">Build</div>
+            <div class="sc-id">BRN-01</div>
+            <div class="sc-name">Day 7: First strategic call</div>
+            <div class="sc-time">3 min</div>
+          </div>
+        </div>
+        <div class="branch-block">
+          <div class="branch-header">Three paths — all converge at CNT-03</div>
+          <div class="branch-paths">
+            <div class="branch-path">
+              <div class="path-label">A — Beginner</div>
+              <div class="path-desc">Momentum −1</div>
+            </div>
+            <div class="branch-path">
+              <div class="path-label">B — Conservative</div>
+              <div class="path-desc">Momentum −1 · Trust +1</div>
+            </div>
+            <div class="branch-path path-correct">
+              <div class="path-label">C — Fashionista</div>
+              <div class="path-desc">Momentum +1 · strongest read</div>
+            </div>
+          </div>
+        </div>
+        <div class="converge-line"></div>
+        <div class="screens-row">
+          <div class="screen-card sc-content">
+            <div class="build-badge">Build</div>
+            <div class="sc-id">CNT-03</div>
+            <div class="sc-name">Consequence reveal</div>
+            <div class="sc-time">2 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="connector-line"></div></div>
+
+    <!-- SECTION 3: NODE 2 -->
+    <div class="section-block">
+      <div class="section-header">
+        <span class="section-pill pill-node2">Node 2 — GenAI investment evaluation</span>
+        <span class="section-duration">Est. 8 min</span>
+        <span class="bloom-tag">Bloom's L4 Analyse</span>
+      </div>
+      <div class="section-wrap">
+        <div class="screens-row" style="margin-bottom: 8px;">
+          <div class="screen-card sc-content">
+            <div class="sc-id">CNT-04</div>
+            <div class="sc-name">Vendor pitch arrives</div>
+            <div class="sc-time">2 min</div>
+          </div>
+          <div class="screen-card sc-branch">
+            <div class="sc-id">BRN-02</div>
+            <div class="sc-name">Evaluate Veridian proposal</div>
+            <div class="sc-time">4 min</div>
+          </div>
+        </div>
+        <div class="branch-block">
+          <div class="branch-header">Four paths based on Risk Cost flag and recommendation</div>
+          <div class="branch-paths">
+            <div class="branch-path">
+              <div class="path-label">Approve, no flag</div>
+              <div class="path-desc">Momentum +1 · Trust −2</div>
+            </div>
+            <div class="branch-path">
+              <div class="path-label">Approve, flagged</div>
+              <div class="path-desc">Momentum +1</div>
+            </div>
+            <div class="branch-path">
+              <div class="path-label">Reject</div>
+              <div class="path-desc">Momentum −1 · Trust +1</div>
+            </div>
+            <div class="branch-path path-correct">
+              <div class="path-label">Pilot, flagged</div>
+              <div class="path-desc">Trust +1 · strongest</div>
+            </div>
+          </div>
+        </div>
+        <div class="converge-line"></div>
+        <div class="screens-row">
+          <div class="screen-card sc-content">
+            <div class="sc-id">CNT-05</div>
+            <div class="sc-name">Consequence reveal</div>
+            <div class="sc-time">2 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="connector-line"></div></div>
+
+    <!-- SECTION 4: NODE 3 -->
+    <div class="section-block">
+      <div class="section-header">
+        <span class="section-pill pill-node3">Node 3 — Governance under pressure</span>
+        <span class="section-duration">Est. 9 min</span>
+        <span class="bloom-tag">Bloom's L5 Evaluate</span>
+      </div>
+      <div class="section-wrap">
+        <div class="screens-row" style="margin-bottom: 8px;">
+          <div class="screen-card sc-content">
+            <div class="sc-id">CNT-06</div>
+            <div class="sc-name">The pressure point</div>
+            <div class="sc-time">2 min</div>
+          </div>
+          <div class="screen-card sc-branch">
+            <div class="sc-id">BRN-03</div>
+            <div class="sc-name">Governance design</div>
+            <div class="sc-time">5 min</div>
+          </div>
+        </div>
+        <div class="branch-block">
+          <div class="branch-header">Three governance postures from sequential micro-decisions</div>
+          <div class="branch-paths">
+            <div class="branch-path">
+              <div class="path-label">Speed-biased</div>
+              <div class="path-desc">Momentum +1 · Trust −1</div>
+            </div>
+            <div class="branch-path path-correct">
+              <div class="path-label">Balanced</div>
+              <div class="path-desc">Momentum +1 · Trust +1 · strongest</div>
+            </div>
+            <div class="branch-path">
+              <div class="path-label">Risk-averse</div>
+              <div class="path-desc">Momentum −1 · Trust +1</div>
+            </div>
+          </div>
+        </div>
+        <div class="converge-line"></div>
+        <div class="screens-row">
+          <div class="screen-card sc-content">
+            <div class="sc-id">CNT-07</div>
+            <div class="sc-name">Consequence reveal</div>
+            <div class="sc-time">2 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"><div class="connector-line"></div></div>
+
+    <!-- VARIABLE STATE -->
+    <div class="var-strip">
+      <div class="var-item">
+        <div class="var-label">Transformation Momentum</div>
+        <div class="var-bar"><div class="var-fill"></div></div>
+        <div class="var-range">Range 0 – 6</div>
+      </div>
+      <div class="var-item">
+        <div class="var-label">Organisational Trust</div>
+        <div class="var-bar"><div class="var-fill"></div></div>
+        <div class="var-range">Range 0 – 6</div>
+      </div>
+      <div class="var-note">Both variables tracked and accumulated across all three nodes</div>
+    </div>
+
+    <div class="connector"><div class="connector-line"></div></div>
+
+    <!-- SECTION 5: DEBRIEF -->
+    <div class="section-block">
+      <div class="section-header">
+        <span class="section-pill pill-debrief">Section 5 — Debrief and leadership profile</span>
+        <span class="section-duration">Est. 8 min</span>
+        <span class="bloom-tag">Bloom's L5 Evaluate + Reflect</span>
+      </div>
+      <div class="section-wrap">
+        <div class="screens-row" style="margin-bottom: 8px;">
+          <div class="screen-card sc-content">
+            <div class="sc-id">CNT-08</div>
+            <div class="sc-name">Day 90 transition</div>
+            <div class="sc-time">1 min</div>
+          </div>
+          <div class="screen-card sc-content">
+            <div class="sc-id">CNT-09</div>
+            <div class="sc-name">Decision map</div>
+            <div class="sc-time">2 min</div>
+          </div>
+          <div class="screen-card sc-content">
+            <div class="sc-id">CNT-10</div>
+            <div class="sc-name">Leadership profile</div>
+            <div class="sc-time">2 min</div>
+          </div>
+        </div>
+        <div class="profile-row">
+          <div class="profile-card">
+            <div class="profile-name">The Accelerator</div>
+            <div class="profile-vars">Momentum 5–6 · Trust 0–4</div>
+          </div>
+          <div class="profile-card">
+            <div class="profile-name">The Architect</div>
+            <div class="profile-vars">Momentum 5–6 · Trust 5–6</div>
+          </div>
+          <div class="profile-card">
+            <div class="profile-name">The Guardian</div>
+            <div class="profile-vars">Momentum 0–4 · Trust 5–6</div>
+          </div>
+          <div class="profile-card">
+            <div class="profile-name">The Reactive</div>
+            <div class="profile-vars">Momentum 0–4 · Trust 0–4</div>
+          </div>
+        </div>
+        <div class="screens-row">
+          <div class="screen-card sc-reflect">
+            <div class="sc-id">RFL-01</div>
+            <div class="sc-name">Reflective prompt</div>
+            <div class="sc-time">3 min</div>
+          </div>
+          <div class="screen-card sc-summary">
+            <div class="sc-id">SUM-01</div>
+            <div class="sc-name">What you practised</div>
+            <div class="sc-time">2 min</div>
+          </div>
+          <div class="screen-card sc-content">
+            <div class="sc-id">CNT-11</div>
+            <div class="sc-name">Where to go next</div>
+            <div class="sc-time">1 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOTALS -->
+    <div class="totals">
+      <div class="total-item">
+        <div class="total-value">19</div>
+        <div class="total-label">Total screens</div>
+      </div>
+      <div class="total-item">
+        <div class="total-value">5</div>
+        <div class="total-label">Portfolio build screens</div>
+      </div>
+      <div class="total-item">
+        <div class="total-value">3</div>
+        <div class="total-label">Decision nodes</div>
+      </div>
+      <div class="total-item">
+        <div class="total-value">4</div>
+        <div class="total-label">Leadership profiles</div>
+      </div>
+      <div class="total-item">
+        <div class="total-value">25–35 min</div>
+        <div class="total-label">Complete module duration</div>
+      </div>
+      <div class="total-item">
+        <div class="total-value">L3–L5</div>
+        <div class="total-label">Bloom's target range</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-footer">
+  The First 90 Days: An AI Leadership Simulation · Learning Journey Map · v1.0 · March 2026 · Portfolio build for IE University · UX: DM Sans · Palette: Navy #1B2D4F · Teal #2A7F6F
+</div>
+
+</body>
+</html>
