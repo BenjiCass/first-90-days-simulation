@@ -40,17 +40,24 @@
 }
 @font-face{
     font-family: 'DM Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local('DM Sans Italic'),
+         url('resources/font_3.woff');
+}
+@font-face{
+    font-family: 'DM Sans';
     font-style: normal;
     font-weight: 700;
     src: local('DM Sans Bold'),
-         url('resources/font_3.woff');
+         url('resources/font_4.woff');
 }
 @font-face{
     font-family: 'Tahoma';
     font-style: normal;
     font-weight: 400;
     src: local('Tahoma'),
-         url('resources/font_4.woff');
+         url('resources/font_5.woff');
 }
 
 
